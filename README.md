@@ -4,17 +4,17 @@
 
 ## Steps for Django project setup
     Select python version and the appropriate versions of other apps...
-Start a venv 
+-Start a venv 
     `python -m venv .venv`
-Install python version required
-Create 
-a .python-version file
+-Install python version required
+-Create 
+--a .python-version file
     input version only eg. 3.12
-a env.py file 
+--a env.py file 
     to include SECRET_KEY and DATABASE_URL
-a .gitignore 
+--a .gitignore 
     to include env.py and .venv
-a Procfile  
+--a Procfile  
     used in conjunction with gunicorn and Heroku to launch web wsgi processes.
 
 **Install**
