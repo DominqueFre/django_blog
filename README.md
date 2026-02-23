@@ -1,3 +1,3 @@
 # django_blog
 
-N.B. Last time had to change set up tools to 80 from 82 ...
+
