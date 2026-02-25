@@ -83,3 +83,10 @@ Then in the same file add a decorator and class
     `summernote_fields = ('content',)`
 Apply the migrations for the django_summernote app
 `python manage.py migrate`
+
+
+
+whitenoise
+At the end of the project run 
+
+python manage.py collectstatic
