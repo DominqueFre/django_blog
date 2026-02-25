@@ -20,11 +20,15 @@
 
 **Install**
 `pip install jjjjj~=1.23.0`
-Django
+Django              (framework)
     (also installs asgiref, tzdata, sqlparse)
 psycopg2            (postgresql database)
+    (also installs setuptools)
 dj-database-url     (postgresql database)
-gunicorn
+gunicorn            (web launcher heroku)
+django-summernote   (adds functionality eg filtering capability)
+    (also installs webencodings and bleach)
+whitenoise          (hmmm CSS, images )
 
 Create a requirements.txt file
     `pip freeze --local >requirements .txt`
@@ -60,3 +64,22 @@ Inside yyy/admin.py - register the model(s)
     `admin.site.register(zzz)`
 Inside settings under the database information (this is similar to allowed hosts...)
 `CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/","https://*.herokuapp.com"]`
+
+### Steps for completing the installation of summernote
+In the projects settings.py file - in INSTALLED APPS
+    `django_summernote`
+In the projects urls.py file - add the path
+    `path('summernote/', include('django_summernote.urls)),`
+In the admin.py file  - of the app that will use summernote add the import 
+    `from django_summernote.admin import SummernoteModelAdmin`
+Then in the same file add a decorator and class 
+(replaces a simple registration eg admin.site.register(ModelClassName))
+`@admin.register(ModelClassName)`
+`class PostAdmin(SummernoteModelAdmin):`
+    `list_display = ('aaaaa', 'slug', 'status')`
+    `search_fields = ['aaaaa']`
+    `list_filter = ('status',)`
+    `prepopulated_fields = {'slug': ('aaaaa',)}`
+    `summernote_fields = ('content',)`
+Apply the migrations for the django_summernote app
+`python manage.py migrate`
