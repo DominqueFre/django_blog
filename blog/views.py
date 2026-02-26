@@ -8,7 +8,7 @@ from .models import Post
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
     template_name = 'blog/index.html'
-    paginate_by = 6    
+    paginate_by = 6
 
 
 def post_detail(request, slug):
@@ -31,8 +31,6 @@ def post_detail(request, slug):
     )
 
 
-
-
 # class PostDetail(generic.DetailView):
 #     model = Post
 #     template_name = 'blog/post_detail.html'
@@ -42,24 +40,9 @@ def post_detail(request, slug):
 #         return context
 
 
-
  # def delete_post(request, slug):
 #     post = get_object_or_404(Post, slug=slug) 
 #    if request.method == 'POST':
 #       post.delete()
 #      return redirect('home')
 #   return render(request, 'blog/post_confirm_delete.html', {'post': post})
-#   
-# def post_detail(request, slug):
-#     post = get_object_or_404(Post, slug=slug)
-#    if request.method == 'POST':
-#       post.delete()
-#     return redirect('home')
-#   return render(request, 'blog/post_detail.html', {'post': post})
-# 
-
-# 
-# def post_detail(request, slug):
-#   post = get_object_or_404(Post, slug=slug)
-# if request.method == 'POST':
-#   post.delete()   

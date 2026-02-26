@@ -53,15 +53,12 @@ In the env.py file
 In the projects settings.py file - utilising the imported env from the key.
     `DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}`
 In the env.py file
+`import os`
+
+`os.environ.setdefault('DATABASE_URL',"postgresql://etc")`
 
 ### Steps for database information     
-Create models in apps in models.py
-Once created use manage.py
-    `python manage.py makemigrations yyy`
-    `python manage.py migrate yyy`
-Inside yyy/admin.py - register the model(s)
-    `from .models import zzz`
-    `admin.site.register(zzz)`
+
 Inside settings under the database information (this is similar to allowed hosts...)
 `CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/","https://*.herokuapp.com"]`
 
@@ -86,7 +83,32 @@ Apply the migrations for the django_summernote app
 
 
 
-whitenoise
-At the end of the project run 
+### Steps for completing the installation of Whitenoise tbc
+In settings.py file in Middleware 
 
-python manage.py collectstatic
+Once installed and when a production deploy is planned run 
+    `python manage.py collectstatic`
+
+
+
+### Models /Views / Templates and URL's
+**Models**
+(The database bit)
+Create models in apps in models.py
+Once created use manage.py
+    `python manage.py makemigrations yyy`
+    `python manage.py migrate yyy`
+Inside yyy/admin.py - register the model(s)
+    `from .models import zzz`
+    `admin.site.register(zzz)`
+**Views**
+(The information pulled out in the format required)
+
+**Templates**
+Base html file in projectxxx/template/ directory
+imports urls that use it at the top
+useful for navbars
+**URLs**
+(how we get about)
+**Static files**
+(the extras prettiness and stuff-can be compressed see later on)
