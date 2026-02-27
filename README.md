@@ -29,6 +29,8 @@ gunicorn            (web launcher heroku)
 django-summernote   (adds functionality eg filtering capability)
     (also installs webencodings and bleach)
 whitenoise          (hmmm CSS, images )
+django-allauth      (user login)
+    (also installs many other apps ie cryptography etc.)
 
 Create a requirements.txt file
     `pip freeze --local >requirements .txt`
@@ -89,7 +91,33 @@ In settings.py file in Middleware
 Once installed and when a production deploy is planned run 
     `python manage.py collectstatic`
 
-
+### Steps for completing installation of django-allauth
+(For controlled user login's etc without accessing admin)
+    `'django.contrib.sites',`
+    `'allauth',`
+    `'allauth.account',`
+    `'allauth.socialaccount',`
+and below the installed apps list and above middleware - add
+`SITE_ID = 1`
+`LOGIN_REDIRECT_URL = '/'`
+`LOGOUT_REDIRECT_URL = '/'`
+and to the end of middleware add
+`'allauth.account.middleware.AccountMiddleware',`
+and below AUTH_PASSWORD_VALIDATORS add
+`ACCOUNT_EMAIL_VERIFICATION = 'none'`
+now migration is possible
+`python manage.py migrate`
+then in the project urls.py file in alphabetical order add
+`path("accounts/", include("allauth.urls")),`
+in the base.html file within the templates directory at the top but under the page links add
+`{% url 'account_login' as login_url %}`
+`{% url 'account_signup' as signup_url %}`
+`{% url 'account_logout' as logout_url %}`
+and the associated links as nav bar items
+  see base.html file
+pip show django-allauth
+from the information shown take the <Location>
+ cp -r <Location>/allauth/templates/* ./templates/
 
 ### Models /Views / Templates and URL's
 **Models**
