@@ -17,5 +17,6 @@ class About(models.Model):
         return f"{self.developer} | written by {self.author}"
 
     class Meta:
+        ordering = ['-created_on']
         verbose_name = 'About the Developer'
         verbose_name_plural = 'About the Developers'

@@ -115,9 +115,11 @@ in the base.html file within the templates directory at the top but under the pa
 `{% url 'account_logout' as logout_url %}`
 and the associated links as nav bar items
   see base.html file
-pip show django-allauth
-from the information shown take the <Location>
- cp -r <Location>/allauth/templates/* ./templates/
+`pip show django-allauth`
+from the information shown take the <Location> ensuring slashes are forward facing and run the following command
+`cp -r <Location>/allauth/templates/* ./templates/`
+
+
 
 ### Models /Views / Templates and URL's
 **Models**
