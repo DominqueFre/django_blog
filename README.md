@@ -31,6 +31,10 @@ django-summernote   (adds functionality eg filtering capability)
 whitenoise          (hmmm CSS, images )
 django-allauth      (user login)
     (also installs many other apps ie cryptography etc.)
+django-crispy-forms~=2.0 
+crispy-bootstrap5~=0.7
+
+
 
 Create a requirements.txt file
     `pip freeze --local >requirements .txt`
@@ -119,6 +123,30 @@ and the associated links as nav bar items
 from the information shown take the <Location> ensuring slashes are forward facing and run the following command
 `cp -r <Location>/allauth/templates/* ./templates/`
 
+### Steps for completing the installation of - django-crispy-forms and crispy-bootstrap - due to use of Bootstrap
+Add in installed apps
+    `'crispy_forms',`
+    `'crispy_bootstrap5',`
+Additional constants for settings.py file
+`CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"`
+`CRISPY_TEMPLATE_PACK = "bootstrap5"`
+
+In the app that will use the form
+add a forms.py file
+`from .models import NameOfModel`
+`from django import forms`
+
+`class NameOfModelForm(forms.ModelForm):`
+    `class Meta:`
+        `model = NameOfModel`
+        `fields = ('body',)`
+In the views.py file
+`from .forms import NameOfModelForm`
+then in the views.py file function that renders the page where the comment field will sit...
+
+In any html template that will house a form
+`{% load crispy_forms_tags %}`
+Displaying a confirmation message
 
 
 ### Models /Views / Templates and URL's

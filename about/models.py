@@ -20,3 +20,19 @@ class About(models.Model):
         ordering = ['-created_on']
         verbose_name = 'About the Developer'
         verbose_name_plural = 'About the Developers'
+
+
+class CollaborateRequest(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=False)
+    message = models.TextField(blank=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Collaboration request from {self.name}"
+
+    class Meta:
+        ordering = ['created_on']
+        verbose_name = 'Collaboration Request'
+        verbose_name_plural = 'Collaboration Requests'
