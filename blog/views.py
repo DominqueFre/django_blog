@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404 #,redirect
+from django.shortcuts import render, get_object_or_404 , redirect
 from django.views import generic
 from django.contrib import messages
-# from requests import post 
+# from requests import post
 from .models import Post
 from .forms import CommentForm
 # Create your views here.
@@ -55,13 +55,14 @@ def post_detail(request, slug):
 #     model = Post
 #     template_name = 'blog/post_detail.html'
 #     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs) 
-#         context['post_list'] = Post.objects.filter(status=1).order_by('-created_on')[:5]
+#         context = super().get_context_data(**kwargs)
+#         context['post_list'] =
+#               Post.objects.filter(status=1).order_by('-created_on')[:5]
 #         return context
 
 
- # def delete_post(request, slug):
-#     post = get_object_or_404(Post, slug=slug) 
+# def delete_post(request, slug):
+#     post = get_object_or_404(Post, slug=slug)
 #    if request.method == 'POST':
 #       post.delete()
 #      return redirect('home')

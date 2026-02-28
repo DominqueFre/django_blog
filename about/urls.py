@@ -3,5 +3,4 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.AboutList.as_view(), name='about_info'),
-   
 ]
