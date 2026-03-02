@@ -31,10 +31,12 @@ django-summernote   (adds functionality eg filtering capability)
 whitenoise          (hmmm CSS, images )
 django-allauth      (user login)
     (also installs many other apps ie cryptography etc.)
-django-crispy-forms~=2.0 
-crispy-bootstrap5~=0.7
-
-
+django-crispy-forms
+crispy-bootstrap5
+cloudinary          (to store user images and content)
+dj3-cloudinary-storage
+urllib3             (~=1.26.20 to run with cloudinary - overwrites previous))
+setuptools          (~=80.0.0 to run with  - overwrites venv version 70 )
 
 Create a requirements.txt file
     `pip freeze --local >requirements .txt`
@@ -148,6 +150,17 @@ In any html template that will house a form
 `{% load crispy_forms_tags %}`
 Displaying a confirmation message
 
+### Steps for completing the installation of Cloudinary
+in installed apps below staticfiles add 
+`'cloudinary_storage',`
+and below django_summernotes add
+`'cloudinary',`
+in env.py set the default cloudinary URL and also set this in your deployment platform ie Heroku
+`os.environ.setdefault(`
+`    'CLOUDINARY_URL',`
+`    'cloudinary://<key>:<secret>@dnfsa35yv'`
+`)`
+
 
 ### Models /Views / Templates and URL's
 **Models**
@@ -171,9 +184,7 @@ useful for navbars
 **Static files**
 (the extras prettiness and stuff-can be compressed see later on)
 
-
-WIP
-django-crispy-forms==2.5 # 2.3 in source
-oauthlib==3.3.1 #3.2.2 in source
-PyJWT==2.11.0 #2.10 in source
-
+was in
+urllib3==2.6.3
+but now cloudinary requires ...
+urllib3==1.26.15

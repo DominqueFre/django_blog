@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import About, CollaborateRequest
+from .models import About, Collaborate
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -20,8 +20,8 @@ class AboutAdmin(SummernoteModelAdmin):
 #       we do below.
 
 
-@admin.register(CollaborateRequest)
-class CollaborateRequestAdmin(admin.ModelAdmin):
+@admin.register(Collaborate)
+class CollaborateAdmin(admin.ModelAdmin):
 
     list_display = ('message','read','created_on')
     list_filter = ('read',)

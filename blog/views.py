@@ -65,12 +65,12 @@ def comment_edit(request, slug, comment_id):
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
 
-        if comment_form.is_valid() and comment.author == request.user:
+        if comment_form.is_valid() and comment.commenter == request.user:
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.add_message(request, messages.SUCCESS, 'Comment updated and awaiting approval!')
         else:
             messages.add_message(
                 request, messages.ERROR, 'Error updating comment!')
@@ -86,7 +86,7 @@ def comment_delete(request, slug, comment_id):
     post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
-    if comment.author == request.user:
+    if comment.commenter == request.user:
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment Deleted!')
     else:

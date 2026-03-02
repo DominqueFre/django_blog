@@ -34,8 +34,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',
-    '.localhost',
-    '::1',
     '127.0.0.1',
 ]
 
@@ -49,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -56,6 +55,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
+    'cloudinary',
     'blog',
     'about',
 ]
@@ -119,8 +119,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.herokuapp.com',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
-    'http://[::1]:8000',
-    'http://*.codeinstitute-ide.net/',
 ]
 
 # Password validation
@@ -161,6 +159,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

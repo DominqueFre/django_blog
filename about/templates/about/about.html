@@ -23,7 +23,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-12 card col-md-6 my-5">
-            
+            {% if user.is_authenticated %}
                 <h2>Let's collaborate!</h2>
                 <p>I believe in the power of shared knowledge and collective effort.
                     Whether you have a project in mind, wish to co-author
@@ -33,11 +33,13 @@
                 <!-- add your form here. Your submit button should 
                                 have the classes of btn, btn-secondary -->
                 <form id="collaborateForm" method="post">
-                    {{ collaboraterequest_form | crispy }}
+                    {{ collaborate_form | crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-secondary">Submit</button>
                 </form>
-           
+            {% else %}
+                <h2>Interested in collaborating? Log in to send a message.</h2>
+           {% endif %}
         </div>
     </div>
 

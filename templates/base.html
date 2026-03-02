@@ -49,6 +49,7 @@
                         <a class="nav-link {% if request.path == about_url %}active{% endif %}" aria-current="page"
                             href="{% url 'about_info' %}">About</a>
                     </li>
+                   
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
@@ -107,11 +108,12 @@
             <i class="fab fa-youtube-square ms-3"></i>
         </p>
     </footer>
-    {% block extras %}
-    {% endblock %}
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
+    {% block extras %}
+    {% endblock %}
 </body>
 
 </html>

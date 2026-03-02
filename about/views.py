@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib import messages
 # from urllib3 import request
 from .models import About
-from .forms import CollaborateRequestForm
+from .forms import CollaborateForm
 # Create your views here.
 
 
@@ -13,29 +13,33 @@ class AboutList(generic.ListView):
     about= About.objects.all().order_by('-created_on').first()
 
     template_name = "about/about.html"
-    collaboraterequest_form = CollaborateRequestForm()
+    collaborate_form = CollaborateForm()
 
-def collaborate_request(request):
+def collaborate(request):
 
+    about = About.objects.all().order_by('-created_on').first()
+    collaborate_form = CollaborateForm()
+
+    
     if request.method == "POST":
-        collaboraterequest_form = CollaborateRequestForm(data=request.POST)
+        collaborate_form = CollaborateForm(data=request.POST)
 
-        if collaboraterequest_form.is_valid():
-            collaboraterequest_form.save()
+        if collaborate_form.is_valid():
+            collaborate_form.save()
             messages.add_message(
                 request,
                 messages.SUCCESS,
                 "Collaboration request submitted successfully!")
 
     about = About.objects.all().order_by('-created_on').first()
-    collaboraterequest_form = CollaborateRequestForm()
+    collaborate_form = CollaborateForm()
 
     return render(
         request,
         "about/about.html",
         {
             "about": about,
-            "collaboraterequest_form": collaboraterequest_form,
+            "collaborate_form": collaborate_form,
         }
         )
 

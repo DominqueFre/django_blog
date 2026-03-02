@@ -22,7 +22,7 @@ class About(models.Model):
         verbose_name_plural = 'About the Developers'
 
 
-class CollaborateRequest(models.Model):
+class Collaborate(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(blank=False)
     message = models.TextField(blank=False, unique=True)
