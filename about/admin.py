@@ -7,9 +7,10 @@ from django_summernote.admin import SummernoteModelAdmin
 class AboutAdmin(SummernoteModelAdmin):
 
     list_display = ('developer','created_on','updated_on')
-    search_fields = ['developer', 'author']
+    search_fields = ['developer','author']
     list_filter = ('updated_on',)
     summernote_fields = ('content',)
+
 
 # Note: admin.ModelAdmin is the standard way of registering
 #       our model with the admin panel. We do it differently
@@ -22,4 +23,5 @@ class AboutAdmin(SummernoteModelAdmin):
 @admin.register(CollaborateRequest)
 class CollaborateRequestAdmin(admin.ModelAdmin):
 
-    list_display = ('message', 'read',)
+    list_display = ('message','read','created_on')
+    list_filter = ('read',)

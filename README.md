@@ -170,3 +170,10 @@ useful for navbars
 (how we get about)
 **Static files**
 (the extras prettiness and stuff-can be compressed see later on)
+
+
+WIP
+django-crispy-forms==2.5 # 2.3 in source
+oauthlib==3.3.1 #3.2.2 in source
+PyJWT==2.11.0 #2.10 in source
+

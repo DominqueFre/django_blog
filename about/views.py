@@ -1,38 +1,43 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.contrib import messages
-from urllib3 import request
+# from urllib3 import request
 from .models import About
-from .forms import CollaborateForm
+from .forms import CollaborateRequestForm
 # Create your views here.
 
 
 class AboutList(generic.ListView):
 
     queryset = About.objects.all()
-    collaborate_form = CollaborateForm()
+    about= About.objects.all().order_by('-created_on').first()
+
     template_name = "about/about.html"
+    collaboraterequest_form = CollaborateRequestForm()
 
-    def collaborate_request(request): 
-        about = About.objects.all().order_by('-created_on').first() 
-        collaborate_form = CollaborateForm(data=request.POST)     
+def collaborate_request(request):
 
-        if collaborate_form.is_valid():                
-            collaborate_form.save()
+    if request.method == "POST":
+        collaboraterequest_form = CollaborateRequestForm(data=request.POST)
+
+        if collaboraterequest_form.is_valid():
+            collaboraterequest_form.save()
             messages.add_message(
                 request,
-                messages.SUCCESS, 
+                messages.SUCCESS,
                 "Collaboration request submitted successfully!")
-        collaborate_form = CollaborateForm()
 
-        return render(
-            request,
-            "about/about.html",
-            {
-                "about": about,
-                "collaborate_form": collaborate_form,
-            }
-            )
+    about = About.objects.all().order_by('-created_on').first()
+    collaboraterequest_form = CollaborateRequestForm()
+
+    return render(
+        request,
+        "about/about.html",
+        {
+            "about": about,
+            "collaboraterequest_form": collaboraterequest_form,
+        }
+        )
 
 # def about_detail(request):
 #     """
