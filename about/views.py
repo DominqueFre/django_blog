@@ -1,26 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.contrib import messages
-# from urllib3 import request
-from .models import About
+from urllib3 import request
+from .models import Abouts
 from .forms import CollaborateForm
 # Create your views here.
 
 
-class AboutList(generic.ListView):
+# class AboutsList(generic.ListView):
 
-    queryset = About.objects.all()
-    about= About.objects.all().order_by('-created_on').first()
+#     queryset = Abouts.objects.all()
+#     about= Abouts.objects.all().order_by('-created_on').first()
 
-    template_name = "about/about.html"
-    collaborate_form = CollaborateForm()
+#     template_name = "about/about.html"
+#     collaborate_form = CollaborateForm()
 
 def collaborate(request):
+    """
+    Renders most recent information aboutview to handle collaboration form submissions
+    """
 
-    about = About.objects.all().order_by('-created_on').first()
-    collaborate_form = CollaborateForm()
-
-    
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)
 
@@ -31,7 +30,7 @@ def collaborate(request):
                 messages.SUCCESS,
                 "Collaboration request submitted successfully!")
 
-    about = About.objects.all().order_by('-created_on').first()
+    about = Abouts.objects.all().order_by('-created_on').first()
     collaborate_form = CollaborateForm()
 
     return render(
@@ -45,15 +44,15 @@ def collaborate(request):
 
 # def about_detail(request):
 #     """
-#     Display an individual :model:`about.About`.
+#     Display an individual :model:`about.Abouts`.
 #     **Context**
 #     ``about``
-#         An instance of :model:`about.About`.
+#         An instance of :model:`about.Abouts`.
 #     **Template:**
 #     :template:`about/about_detail.html`
 #     """
 
-#     queryset = About.objects.all()
+#     queryset = Abouts.objects.all()
 #     about = get_object_or_404(queryset,)
 
 #     return render(

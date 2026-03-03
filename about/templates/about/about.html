@@ -2,23 +2,27 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<!-- {% for about in object_list %} -->
+<!-- {% for abouts in abouts_list %} -->
 <div class="container mt-5">
     <div class="row">
         <div class="col-12 col-md-4 text-center">
-            <img src="{% static 'images/nobody.jpg' %}" width="75%">
+            <!-- {% if "placeholder" in abouts.profile_pic.url %}
+            <img src="{% static 'images/nobody.jpg' %}" width="75%" alt = "placeholder image">
+            {% else %}
+            <img src="{{ abouts.profile_pic.url }}" width="75%" alt="{{ abouts.developer }}">
+            {% endif %} -->
         </div>
         <div class="col-12 col-md-8">
             <!-- Title goes between these h2 tags -->
-            <h2>{{ about.developer }}</h2>
+            <h2>{{ abouts.developer }}</h2>
             <!-- Content goes directly underneath this -->
-            <p>{{ about.content | safe }}</p>
+            <p>{{ abouts.content | safe }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col text-right">
             <!-- Updated on field goes in here -->
-            <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
+            <p class="text-end"><em>Updated on: {{ abouts.updated_on }}</em></p>
         </div>
     </div>
     <div class="row justify-content-center">

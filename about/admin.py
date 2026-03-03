@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import About, Collaborate
 from django_summernote.admin import SummernoteModelAdmin
+from .models import Abouts, Collaborate
 
 
-@admin.register(About)
-class AboutAdmin(SummernoteModelAdmin):
+@admin.register(Abouts)
+class AboutsAdmin(SummernoteModelAdmin):
 
-    list_display = ('developer','created_on','updated_on')
-    search_fields = ['developer','author']
+    list_display = ('developer', 'created_on', 'updated_on')
+    search_fields = ['developer', 'author']
     list_filter = ('updated_on',)
     summernote_fields = ('content',)
 
@@ -23,5 +23,5 @@ class AboutAdmin(SummernoteModelAdmin):
 @admin.register(Collaborate)
 class CollaborateAdmin(admin.ModelAdmin):
 
-    list_display = ('message','read','created_on')
+    list_display = ('message', 'read', 'created_on')
     list_filter = ('read',)

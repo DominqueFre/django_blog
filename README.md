@@ -181,10 +181,17 @@ imports urls that use it at the top
 useful for navbars
 **URLs**
 (how we get about)
-**Static files**
-(the extras prettiness and stuff-can be compressed see later on)
+**Static folder and files**
+Java Script , CSS style sheets and images are stored in here.  They do not change and are
+part of the project set up.
 
-was in
-urllib3==2.6.3
-but now cloudinary requires ...
-urllib3==1.26.15
+**staticfiles**
+Once required the command below must be run before each commit/deploy
+`python manage.py collectstatic`
+
+**Model and View setups**
+
+
+**Create Super user**
+Run the command 
+`python manage.py createsuperuser`

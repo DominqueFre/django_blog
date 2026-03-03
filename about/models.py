@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
-class About(models.Model):
+class Abouts(models.Model):
 
     developer = models.CharField(max_length=100, unique=True, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE,
@@ -12,6 +12,7 @@ class About(models.Model):
     content = models.TextField(blank=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    profile_pic = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
         return f"{self.developer} | written by {self.author}"
